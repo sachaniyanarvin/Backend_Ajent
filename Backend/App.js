@@ -1,6 +1,6 @@
 import express from 'express';
 import morgan from 'morgan';
-import connect from './db/db.js';
+import connect from './DataBase/db.js';
 import userRoutes from './routes/user.routes.js';
 import projectRoutes from './routes/project.routes.js';
 import aiRoutes from './routes/ai.routes.js';
@@ -9,7 +9,7 @@ import cors from 'cors';
 connect();
 
 
-const app = express();
+const app = express();  
 
 app.use(cors());
 app.use(morgan('dev'));
