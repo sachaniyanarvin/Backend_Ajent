@@ -202,7 +202,7 @@ const Project = () => {
                         ref={messageBox}
                         className="message-box p-1 flex-grow flex flex-col gap-1 overflow-auto max-h-full scrollbar-hide">
                         {messages.map((msg, index) => (
-                            <div key={index} className={`${msg.sender._id === 'ai' ? 'max-w-80' : 'max-w-52'} ${msg.sender._id == user._id.toString() && 'ml-auto'}  message flex flex-col p-2 bg-slate-50 w-fit rounded-md`}>
+                            <div key={msg.sender._id + index} className={`${msg.sender._id === 'ai' ? 'max-w-80' : 'max-w-52'} ${msg.sender._id == user._id.toString() && 'ml-auto'}  message flex flex-col p-2 bg-slate-50 w-fit rounded-md`}>
                                 <small className='opacity-65 text-xs'>{msg.sender.email}</small>
                                 <div className='text-sm'>
                                     {msg.sender._id === 'ai' ?
@@ -237,18 +237,14 @@ const Project = () => {
                     <div className="users flex flex-col gap-2">
 
                         {project.users && project.users.map(user => {
-
-
                             return (
-                                <div className="user cursor-pointer hover:bg-slate-200 p-2 flex gap-2 items-center">
+                                <div key={user._id} className="user cursor-pointer hover:bg-slate-200 p-2 flex gap-2 items-center">
                                     <div className='aspect-square rounded-full w-fit h-fit flex items-center justify-center p-5 text-white bg-slate-600'>
                                         <i className="ri-user-fill absolute"></i>
                                     </div>
                                     <h1 className='font-semibold text-lg'>{user.email}</h1>
                                 </div>
                             )
-
-
                         })}
                     </div>
                 </div>
