@@ -20,15 +20,16 @@ const Login = () => {
         axios.post('/users/login', {
             email,
             password
+        },{
+            withCredentials : true
         }).then((res) => {
-            console.log(res.data)
-
-            localStorage.setItem('token', res.data.token)
-            setUser(res.data.user)
-
-            navigate('/')
+            if(res && res.data) {  // Add null check
+                localStorage.setItem('token', res.data.token)
+                setUser(res.data.user)
+                navigate('/')
+            }
         }).catch((err) => {
-            console.log(err.response.data)
+            console.log(err.response?.data || err)
         })
     }
 
